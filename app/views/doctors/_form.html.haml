@@ -1,0 +1,21 @@
+%link#bootstrap-css{:href => "//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css", :rel => "stylesheet"}/
+%script{:src => "//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"}
+%script{:src => "//code.jquery.com/jquery-1.11.1.min.js"}
+%link{:href => "//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css", :rel => "stylesheet"}/
+.container
+  %h3
+    DOCTOR 
+  = form_for @doctor do |f|
+    .input-group
+      = f.label "Name"
+      = f.text_field :name, :class => "form-control"
+    %span.help-block
+    .input-group
+      = f.label "Phone Number"
+      = f.text_field :number, :class => "form-control"
+    %span.help-block
+    .input-group
+      = f.label "Specialization"
+      = f.text_field :specialization, :class => "form-control"
+    %span.help-block
+    = f.submit "Submit", :class => "btn btn-success" 

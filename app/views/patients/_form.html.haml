@@ -1,0 +1,19 @@
+%link#bootstrap-css{:href => "//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css", :rel => "stylesheet"}/
+%script{:src => "//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"}
+%script{:src => "//code.jquery.com/jquery-1.11.1.min.js"}
+/ ---- Include the above in your HEAD tag --------
+%section#login
+  .container
+    %h3.omb_authTitle
+      PATIENT
+    = form_for @patient do |f|
+      .input-group
+        = f.label "Patient Name"
+        = f.text_field :name, :class => "form-control"
+      %span.help-block
+      .input-group
+        = f.label "Phone Number"
+        = f.text_field :number, :class => "form-control"
+      %br
+      %span
+        = f.submit "SUBMIT", :class => "btn btn-success"

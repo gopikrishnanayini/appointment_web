@@ -1,0 +1,39 @@
+%link#bootstrap-css{:href => "//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css", :rel => "stylesheet"}/
+%script{:src => "//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"}
+%script{:src => "//code.jquery.com/jquery-1.11.1.min.js"}
+%link{:href => "//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css", :rel => "stylesheet"}/
+.container
+  .omb_login
+    %h3.omb_authTitle
+      Login or
+      = link_to "Sign up", new_user_registration_path
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      .row.omb_row-sm-offset-3.omb_socialButtons
+        .col-xs-4.col-sm-2
+          = link_to user_facebook_omniauth_authorize_path do
+            .btn.btn-lg.btn-block.omb_btn-facebook
+              %i.fa.fa-facebook.visible-xs
+              Facebook
+        .col-xs-4.col-sm-2
+          = link_to user_google_oauth2_omniauth_authorize_path do
+            .btn.btn-lg.btn-block.omb_btn-google
+              %i.fa.fa-google-plus.visible-xs
+              Google+
+      .row.omb_row-sm-offset-3.omb_loginOr
+        .col-xs-12.col-sm-6
+          %hr.omb_hrOr/
+          %span.omb_spanOr or
+      .row.omb_row-sm-offset-3
+        .col-xs-12.col-sm-6
+          %form.omb_loginForm{:action => "", :autocomplete => "off", :method => "POST"}
+            .input-group
+              %span.input-group-addon
+                %i.fa.fa-user
+              = f.email_field :email, autofocus: true, :class => "form-control"
+            %span.help-block
+            .input-group
+              %span.input-group-addon
+                %i.fa.fa-lock
+              = f.password_field :password, autocomplete: true, :class => "form-control"
+            %span.help-block 
+            = f.submit "Log in", :class => "btn btn-primary btn-block" 
