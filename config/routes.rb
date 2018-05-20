@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
 
-  root "homes#index"
+  root "homes#new"
   resources :patients, :homes, :doctors, :appointments
 end

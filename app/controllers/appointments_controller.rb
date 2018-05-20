@@ -4,12 +4,11 @@ class AppointmentsController < ApplicationController
   
 	def index
     @appointments = Appointment.all
-	end
+  end
     
 
-	def new
+  def new
     @appointment = Appointment.new
-    @patient = @appointment.patients.build
 	end
 
 	def create
@@ -18,7 +17,7 @@ class AppointmentsController < ApplicationController
       redirect_to appointments_path, :notice => "Appointment was created Successfully "
     else
       render :action => "new"
-    end
+    end  
 	end
 
   def show

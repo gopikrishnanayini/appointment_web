@@ -1,3 +1,3 @@
 class Appointment < ApplicationRecord
-	has_many :patients, inverse_of: :appointment, dependent: :destroy
+	#validates :disease, presence: { :message => "This field is required." }
 end
