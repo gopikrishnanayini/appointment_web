@@ -6,79 +6,80 @@
     %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"}
     %script{:src => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"}
     %script{:src => "http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"}
-    %script{:src => "js/bootstrap.min.js"}
-    %link{:href => "css/bootstrap-responsive.min.css", :rel => "stylesheet"}/
     %link#bootstrap-css{:href => "//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css", :rel => "stylesheet"}/
     %script{:src => "//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"}
     %script{:src => "//code.jquery.com/jquery-1.11.1.min.js"}
     %link{:href => "//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css", :rel => "stylesheet"}/
   %body
-    .container.form-signin
-      .row    
-        .span3
-          %h2.form-signin-heading Patient
-          = form_for @patient , :url => { :action => "create" } , :class =>"form-signin2" do |f|
-            .input-group
-              = f.label "Patient Name"
-              = f.text_field :name, :class => "form-control"
-            %span.help-block
-            .input-group
-              = f.label "Phone Number"
-              = f.text_field :number, :class => "form-control"
-            %br
-            %span
-              = f.submit "SUBMIT", :class => "btn btn-success"
     .container
-      .row.form-signin
-        .span3
-          %h2.form-signin-heading Doctor
-          = form_for @doctor, :url => { :action => "create" }  , :class =>"form-signin2" do |f|
-            .input-group
-              = f.label "Name"
-              = f.text_field :name, :class => "form-control"
-            %span.help-block
-            .input-group
-              = f.label "Phone Number"
-              = f.text_field :number, :class => "form-control"
-            %span.help-block
-            .input-group
-              = f.label "Specialization"
-              = f.text_field :specialization, :class => "form-control"
-            %span.help-block
-            = f.submit "Submit", :class => "btn btn-success" 
+      .row
+        .col{:style => 'float:left;margin-left:150px;'}
+          %div
+            %h2{:style =>"border-bottom:1px solid #000;text-align:center;"} Patient
+            = form_for @patient , :url => { :action => "create" } , :class =>"form-signin2" do |f|
+              .input-group
+                = f.label "Patient Name"
+                = f.text_field :name, :class => "form-control"
+              %span.help-block
+              .input-group
+                = f.label "Phone Number"
+                = f.text_field :number, :class => "form-control"
+              %br
+              %span
+                = f.submit "SUBMIT", :class => "btn btn-success",:style => "float:right"
+        .col{:style => 'float:right;margin-right:150px;'}
+          %div.new
+            %h2{:style =>"border-bottom:1px solid #000;text-align:center;"} Doctor
+            = form_for @doctor, :url => { :action => "create" }  , :class =>"form-signin2" do |f|
+              .input-group
+                = f.label "Name"
+                = f.text_field :name, :class => "form-control"
+              %span.help-block
+              .input-group
+                = f.label "Phone Number"
+                = f.text_field :number, :class => "form-control"
+              %span.help-block
+              .input-group
+                = f.label "Specialization"
+                = f.text_field :specialization, :class => "form-control"
+              %span.help-block
+              = f.submit "Submit", :class => "btn btn-success" ,:style => "float:right"
+    %hr
     .container
-      .row.form-signin
-        .span3
-          %h2.form-signin-heading Appointment
-          = form_for @appointment , :url => { :action => "create" } , :class =>"form-signin2" do |f|
-            - doctors = Doctor.all.pluck(:name)
-            .input-group
-              = f.select("doctor", options_for_select(doctors), {:class=> 'select2-single form-control'})
-            %span.help-block
-            - patients = Patient.all.pluck(:name)
-            .input-group
-              = f.select("patient", options_for_select(patients), {:class=> 'select2-single form-control'})
-            %span.help-block
-            .input-group
-              = f.label "Disease"
-              = f.text_field :disease, :class => "form-control"
-            %span.help-block
-            = f.submit "Submit", :class => "btn btn-success" 
-    .container
-      .row.form-signin
-        .span3
-          %h2.form-signin-heading Appointment Listing
-          %table.table.table-bordered.table-striped
-            %thead
-              %tr
-                %th Doctor
-                %th Patient
-                %th Disease
-            %tbody
-              - @appointments.each do |appointment|
-                %tr
-                  %td= appointment.doctor
-                  %td= appointment.patient
-                  %td= appointment.disease
-
-
+      .row
+        .col{:style => 'float:left;margin-left:150px;'}
+          %div1
+            %h2{:style =>"border-bottom:1px solid #000;text-align:center;"} Appointment
+            = form_for @appointment , :url => { :action => "create" } , :class =>"form-signin2" do |f|
+              - doctors = Doctor.all.pluck(:name)
+              .input-group
+                = f.label "Doctor Name"
+                %div.new
+                  = f.select("doctor", options_for_select(doctors), {:class=> 'select2-single form-control'})
+              %span.help-block
+              - patients = Patient.all.pluck(:name)
+              .input-group
+                = f.label "Patient Name"
+                %div.new
+                  = f.select("patient", options_for_select(patients), {:class=> 'select2-single form-control'})
+              %span.help-block
+              .input-group
+                = f.label "Disease"
+                = f.text_field :disease, :class => "form-control"
+              %span.help-block
+              = f.submit "Submit", :class => "btn btn-success" ,:style => "float:right"
+        .col{:style => 'float:right;margin-right:150px;'}
+          %div.ne2
+            %h2{:style =>"border-bottom:1px solid #000;"} Appointment Listing
+            %table.table.table-bordered.table-striped
+              .thead-primary
+                %tr#bg-primary
+                  %th Doctor
+                  %th Patient
+                  %th Disease
+              %tbody
+                - @appointments.each do |appointment|
+                  %tr
+                    %td= appointment.doctor
+                    %td= appointment.patient
+                    %td= appointment.disease
